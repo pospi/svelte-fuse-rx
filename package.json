@@ -1,14 +1,23 @@
 {
 	"name": "svelte-fuse-rx",
 	"version": "0.1.2",
+	"type": "module",
+	"module": "./package/index.js",
+	"main": "./package/index.js",
+	"types": "./package/index.d.ts",
+	"publishConfig": {
+		"directory": "./package"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/AlexWarnes/svelte-fuse-rx.git"
 	},
 	"scripts": {
+		"prepare": "npm run package",
 		"dev": "vite dev",
 		"build": "vite build",
-		"package": "svelte-kit sync && svelte-package",
+		"package": "svelte-kit sync && svelte-package && npm run package:finalize",
+		"package:finalize": "sed -i.bak \"s@/package/index@/index@g\" ./package/package.json",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -37,9 +46,5 @@
 	},
 	"dependencies": {
 		"rxjs": "^7.6.0"
-	},
-	"type": "module",
-	"publishConfig": {
-		"directory": "./package"
 	}
 }
