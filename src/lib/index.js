@@ -1,4 +1,4 @@
-import { rxWritable } from './rx.js';
+import { rxWritable, rxReplayableWritable } from './rx.js';
 import {
 	rxDebounce,
 	rxThrottle,
@@ -15,7 +15,8 @@ export {
 	rxBufferCount,
 	rxGet,
 	rxGETFromInput,
-	rxWritable
+	rxWritable,
+  rxReplayableWritable
 };
 
 // test
